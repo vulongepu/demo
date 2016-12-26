@@ -1,0 +1,11 @@
+How it works
+
+The plugins site is an index of GitHub repositories that contain jQuery plugins. The repositories can contain one or many jQuery plugin with an accompanying valid plugin.jquery.json manifest file in the repository root. The specification for this file lives here.
+
+How to list a plugin
+
+Simply add a post-receive hook to your repository with our Web Hook URL, http://plugins.jquery.com/postreceive-hook.. When you push to your repository, the plugins site will look at your repository's tags and their corresponding manifest file (thepluginname.jquery.json). You can read up on this process, as well as the requirements of the manifest file on the jQuery Plugins Site.
+
+Assuming there were no errors in your manifest file, your plugin should be on the plugins site within a minute after pushing to GitHub. If you still don't see your plugin listed, check the error log.
+
+We are currently exploring options to provide better feedback on errors encountered during the process of adding your plugin to the plugins site. If you are still encountering issues after verifying the post-receive hook is in place and that your manifest file is valid, ask for assistance in #jquery-content on freenode.net.
