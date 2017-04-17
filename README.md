@@ -1,60 +1,16 @@
-plugins.jquery.com
+###3. Sử dụng Model: - ->where("row",$args)	: Tương đương câu lệnh where row = $args. 
+ ->where("row",$args,"LIKE")	: Tương đương câu lệnh LIKE (Có thể thay LIKE) 
+ ->orderBy("asc",$args)	: Tương đương câu lệnh sắp xếp 
+ ->join("TABLE1","TABLE1.row = TABLE2.row","LEFT") : Tương đương câu lệnh JOIN (Có thể thay thế INNER JOIN ,RIGHT)
+ ->num_rows()	: Lấy ra tổng số record - ->get()	: Lấy tất cả record
+ ->get(null,null,$select)	: 3 Tham số $select = Tên row trong table 
+ ->getOne()	: Lấy 1 record - ->delete()	: Xóa record 
+ ->insert($data)	: Thêm record, $data = array( "row" => $row ) 
+ ->update($data) : Cập nhật record, $data = array( "row" => $row ) 
+ ->rawQuery($sql)	: Thực thi trực tiếp câp lệnh SQL 
+ 
+ ###4. Các function hay sử dụng: - base_url() : base_url() tương đương với url gốc, giống codigniter - redirect($url)	: điều hướng tang web, nếu bên trong biến $url = "current" thì là bạn đang F5 trang web, còn ko bạn có thể truyền url vào bt để chuyển sang trang khác - lang($key) : dùng để xử lý đa ngôn ngữ, bên trong là $key, để xử lý vào trong thư mục App/lang/ngôn ngữ/main.php bạn có thể truyền $key vào - alias($string)	: chuyển chuỗi Unicode sang kiểu url chuẩn. - dd($array) : là hàm dùng để dump mảng. - createCaptcha() : Tạo mã Captcha. - checkCaptcha($input)	: Kiểm tra mã Captcha có chính xác ko. - getIp() : lấy địa chỉ IP client. - base64url_encode($var): mã hóa base 64. - base64url_decode($var): giải mã base 64. - recursiveMenu($data,$parent=0,$count=0) : Đệ quy menu : + trước khi dùng hàm này thì tạo ra một biến mới đặt tên là $data = array(); + loop vòng lặp mảng cũ, đặt parent id = key của $data mới(Tức là gom parent id chung lại) foreach ($_web['menu'] as $value) { $parent = $value['parent_id']; $data[$parent][] = $value; }
 
-The jQuery Plugins site, http://plugins.jquery.com/
+###5. Tích hợp thư viện mới: - Mở file composer.json thêm vào reuired: tên thư viện sau đó chạy lệnh php composer self-update
 
-How it works
-
-The plugins site is an index of GitHub repositories that contain jQuery plugins. The repositories can contain one or many jQuery plugin with an accompanying valid plugin.jquery.json manifest file in the repository root. The specification for this file lives here.
-
-How to list a plugin
-
-Simply add a post-receive hook to your repository with our Web Hook URL, http://plugins.jquery.com/postreceive-hook.. When you push to your repository, the plugins site will look at your repository's tags and their corresponding manifest file (thepluginname.jquery.json). You can read up on this process, as well as the requirements of the manifest file on the jQuery Plugins Site.
-
-Assuming there were no errors in your manifest file, your plugin should be on the plugins site within a minute after pushing to GitHub. If you still don't see your plugin listed, check the error log.
-
-We are currently exploring options to provide better feedback on errors encountered during the process of adding your plugin to the plugins site. If you are still encountering issues after verifying the post-receive hook is in place and that your manifest file is valid, ask for assistance in #jquery-content on freenode.net.
-
-Development
-
-Requires
-
-jQuery's jquery-wp-content
-Web server (such as Apache)
-PHP
-MySQL
-WordPress
-node
-git
-Installation
-
-web-base-template
-
-Follow the installation steps for jquery-wp-content.
-Install node >=0.6.4
-
-Follow https://github.com/joyent/node/wiki/Installation
-You can also install nave, a node version manager. You can easily install it using nave-installer or download it manually.
-
-plugins.jquery.com setup
-
-To build and deploy your changes for previewing in a jquery-wp-content instance, follow the workflow instructions from our documentation on contributing to jQuery Foundation web sites.
-
-If you want to setup and ultimately run the node scripts that manage plugin entries, run grunt setup. If you need to clear the db or are getting and error running grunt setup regarding the setupdb or retrydb tasks failing, run grunt clean-all.
-
-If you have made changes to the documentation and simply want to deploy or update that content, run grunt update.
-
-Running the site for development and debugging
-
-node scripts/update-server.js --console will start the update server and log its output to the terminal window. This will not update wordpress, but will let you see the result of adding a plugin locally.
-
-node scripts/wordpress-update.js --console will process the changes in sqlite into entries in wordpress. Note, if you're re-adding plugins that have already been added, you will need to remove those entries from wordpress.
-
-Running the site normally
-
-node scripts/manager.js runs the update-server and wordpress-update scripts automatically. However, because it handless restarts/failures of these scripts, it is harder to stop this process. Also, running the servers manually and individually is much easier for development, as you will probably only need update-server.js running.
-
-Transferring ownership of a plugin
-
-On occassion, a plugin will be transferred from one owner to another. When this happens, you will need to verify that the transfer is legitimate. The request should come from the original owner, but in rare circumstances the request may come from the new owner and the original owner may not be reachable.
-
-To transfer a plugin, log into the production server and run the bin/transfer.js script. The script will prompt you for the necessary information and has several checks to ensure that the data provided isn't junk.
+###6. Biến toàn cục: - $_web	: Có thể sử dụng được ở bất kỳ đâu trên trang web var_dump($_web) để xem
